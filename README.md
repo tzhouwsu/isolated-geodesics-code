@@ -7,7 +7,7 @@ Geodesics calculation is implemented in ChemNetworks (https://github.com/AClarkL
 ## isolated geodesics
 Because the ChemNetworks outputs the geodesics between all the possible two nodes, the sub-path that is included in a longer path will also be outputed. 
 For example, path 1 --> 2 --> 3 --> 4 --> 5 --> 6 --> 7, will include sub-paths of 1 --> 2 --> 3, 2 --> 3 --> 4 --> 5 ...
-![Alt text](https://github.com/tzhouwsu/isolated-geodesics-code/isolated-gd.jpg)
+![illustrative image](https://github.com/tzhouwsu/isolated-geodesics-code/isolated-gd.jpg)
 So if we are interested in those isolated geodesic paths, i.e. paths are not sub-paths, then post-processing should be used to remove these sub-paths.
 
 This code is aimed at removing the short sub-paths and get all the isolated geodesic paths.
