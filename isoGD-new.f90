@@ -179,13 +179,13 @@
 ! start output   
       do j = 1,nlines
          pathj = GD_ALL(j)
-!         if(pathj%isolated .eq. 0) then ! only print the isolated ones
+         if(pathj%isolated .eq. 0) then ! only print the isolated ones
             do k=1,pathj%pathlength+1
                dum_chain(k) = pathj%pathchain(k)
             enddo
             write(2,*) pathj%firstnode, pathj%lastnode, pathj%pathlength, pathj%pathdist, & 
                 & pathj%isolated, (dum_chain(k),k=1,pathj%pathlength+1)
-!          endif    ! end of "if(pathj%isolated .eq. 0)" 
+          endif    ! end of "if(pathj%isolated .eq. 0)" 
      enddo
 
       close (2)  ! close the output file
