@@ -232,7 +232,7 @@
             enddo ! end of "do dum_mi = 1,length2-length1+1"
 
             if(find .ne. 1) then ! if it does not match in the ordinary order, check the reverse order
-               do dum_mi = length2+1,length1+1   ! considering the reverse order of the path
+               do dum_mi = length2+1,length1+1,-1   ! considering the reverse order of the path
                   nodei = path2%pathchain(dum_mi)
                   nodej = path2%pathchain(dum_mi-length1)
                   if((nodei .ne. node1) .or. (nodej .ne. node2)) then
