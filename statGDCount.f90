@@ -7,16 +7,16 @@ program statGDCount
      implicit none
      integer :: snapid, nodeid, edgek, sumk
      integer :: snapi, snapf
-     integer, dimension(2000) :: Stat_edge_per_node
-     integer, dimension(100000) :: Stat_edge_per_snap
+     integer, dimension(5000) :: Stat_edge_per_node
+     integer, dimension(1000000) :: Stat_edge_per_snap
      character(100) :: filename, fid, tmp
      integer :: eri, erj, i, j, lower, upper
 
-     do i = 1, 2000
+     do i = 1, 5000
         Stat_edge_per_node(i) = 0
      enddo
 
-     do i = 1, 100000
+     do i = 1, 1000000
         Stat_edge_per_snap(i) = 0
      enddo
 
@@ -59,8 +59,8 @@ program statGDCount
               if(erj /= 0) then
                  exit
               else
-                 if(edgek .ge. 2000) then
-                    write(6,*) 'overflow in Stat_edge_per_node'
+                 if(edgek .ge. 5000) then
+                    write(6,*) 'overflow in Stat_edge_per_node', fid, nodeid
                     stop
                  endif
                  sumk = sumk + edgek
@@ -68,8 +68,8 @@ program statGDCount
               endif
 !              write(6,*) "   ", snapid, nodeid, edgek, Stat_edge_per_node(edgek+1)
            enddo
-           if(sumk .ge. 100000) then
-              write(6,*) 'overlow in Stat_edge_per_snap'
+           if(sumk .ge. 1000000) then
+              write(6,*) 'overlow in Stat_edge_per_snap', fid
               stop
            endif
            Stat_edge_per_snap(sumk) = Stat_edge_per_snap(sumk) + 1
@@ -85,9 +85,9 @@ program statGDCount
          write(6,*) "error, cannot create output file: ", filename
          stop
      else
-         lower = 2000
+         lower = 5000
          upper = 0
-         do i = 1, 2000
+         do i = 1, 5000
            if(Stat_edge_per_node(i) /= 0) then
              if(i .lt. lower) then
                lower = i
@@ -111,9 +111,9 @@ program statGDCount
          write(6,*) "error, cannot create output file: ", filename
          stop
      else
-         lower = 100000
+         lower = 1000000
          upper = 0
-         do i = 1, 100000
+         do i = 1, 1000000
            if(Stat_edge_per_snap(i) /= 0) then
              if(i .lt. lower) then
                lower = i
